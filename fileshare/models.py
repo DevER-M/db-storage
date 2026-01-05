@@ -1,6 +1,7 @@
 from fileshare import db, login_manager
 from sqlalchemy.orm import mapped_column
 from sqlalchemy import Integer, String, BLOB, ForeignKey
+from sqlalchemy.dialects.mysql import LONGBLOB
 from flask_login import UserMixin
 from uuid import uuid4
 
@@ -13,7 +14,7 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
     username = mapped_column(String(30), unique=True)
-    email = mapped_column(String, unique=True)
+    email = mapped_column(String(100), unique=True)
     password = mapped_column(BLOB, nullable=False)
 
     files = db.relationship("File", back_populates="user")
@@ -28,10 +29,10 @@ class User(db.Model, UserMixin):
 
 
 class File(db.Model):
-    id = mapped_column(String, primary_key=True)
+    id = mapped_column(String(100), primary_key=True)
     user_id = mapped_column(Integer, ForeignKey("user.id"), nullable=False)
-    file = mapped_column(BLOB)
-    filename = mapped_column(String)
+    file = mapped_column(LONGBLOB)
+    filename = mapped_column(String(100))
 
     user = db.relationship("User", back_populates="files")
 

@@ -1,0 +1,19 @@
+[project]
+name = "db-storage"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+
+dependencies = [
+    "bcrypt>=4.3.0",
+    "email-validator>=2.2.0",
+    "flask>=3.1.2",
+    "flask-bcrypt>=1.0.1",
+    "flask-login>=0.6.3",
+    "flask-session>=0.8.0",
+    "flask-sqlalchemy>=3.1.1",
+    "flask-wtf>=1.2.2",
+    "mysql>=0.0.3",
+    "sqlalchemy>=2.0.43",
+    "wtforms>=3.2.1",
+]

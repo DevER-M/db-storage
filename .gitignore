@@ -1,6 +1,0 @@
-.vscode
-__pycache__
-venv
-*.db
-flask_session/*
-.mypy*

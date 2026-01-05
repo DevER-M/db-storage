@@ -16,15 +16,15 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager()
 
 app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_TYPE"] = "sqlalchemy"
 app.config["SECRET_KEY"] = "iuhe398h432u8hnf401fhni32"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("sqlurl")
-
+app.config["SQLALCHEMY_DATABASE_URI"] = r"mysql://root:nice@localhost:3306/fileshare"
+app.config["PORT"]=80
 db.init_app(app)
 login_manager.init_app(app)
 
 from fileshare.models import User, File
 
 with app.app_context():
-    db.create_all()
+   db.create_all()
 from fileshare import routes
